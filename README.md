@@ -3,7 +3,9 @@ This is an ip camera project for my school.
 
 ## Borg 
 * Borgbackup packages
-Depending on your distribution the commande might differ you can refer on [the borg website](https://borgbackup.readthedocs.io/en/stable/installation.html)
+
+Depending on your distribution the command might differ you can refer on [the borg website](https://borgbackup.readthedocs.io/en/stable/installation.html)
+> For this projet we are running our server on debian
 ```
 apt install borgbackup
 ```
