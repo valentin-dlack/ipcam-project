@@ -14,7 +14,7 @@ borg init --encryption=repokey user@hostname:/path/to/repo
 ```
 > then you'll need to insert a passphrase for your repo which will be needed in the next steps
 
-2. Create a script to autmoate backups
+2. Create a script to automate backups
 
 ```bash
 #!/bin/sh
@@ -46,9 +46,9 @@ borg prune                          \
     --list                          \
     --prefix '{hostname}-'          \
     --show-rc                       \
-    --keep-daily    7               \
-    --keep-weekly   4               \
-    --keep-monthly  6               \
+    --keep-daily    ?               \
+    --keep-weekly   ?               \
+    --keep-monthly  ?               \
 
 prune_exit=$?
 
