@@ -83,6 +83,7 @@ exit ${global_exit}
     ExecStart=/path/to/script
     ```
     Then create a '.timer' file which will be used to run the service at a     specific date
+    **Important :** the '.timer' and '.service' need to have the same name
     >For the example the script will be run every day at         00:00am, and if the machine is down it during this period it will be executed when starting the machine
     
     ```timer
@@ -96,6 +97,10 @@ exit ${global_exit}
     [Install]
     WantedBy=timers.target
     ```
+    Importation of the service:
+    -Reload the service files : `systemctl daemon-reload`
+    -Start the service : `systemctl start name.timer`
+    -Enable service on startup : `systemctl enable name.timer`
 5. Restore a backup
 Use `borg list` to see all the archives present in the backup folder
 ```
