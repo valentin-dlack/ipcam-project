@@ -1,6 +1,3 @@
-# ipcam-project
-This is an ip camera project for my school.
-
 ## Borg 
 * Borgbackup packages
 
@@ -70,13 +67,41 @@ exit ${global_exit}
 
 ```
 
-3. Use cron to run the script at a specific interval
-4. Restore a backup
+3. Run the script at regular intervals
+    * By creating a crontab job : 
+        Run `crontab -e`  in your terminal, select your text editor
+        Then in your crontab file insert this line `*/5 * * * *     /path/to/script`, this line means that the script will be run every 5         minutes
+    * By creating a systemd service :
+    First  go to `/etc/systemd/system` directory and then create a             '.service' file
+    
+    ```service
+    [Unit]
+    Description= ...
+        
+    [Service]
+    Type=oneshot
+    ExecStart=/path/to/script
+    ```
+    Then create a '.timer' file which will be used to run the service at a     specific date
+    >For the example the script will be run every day at         00:00am, and if the machine is down it during this period it will be executed when starting the machine
+    
+    ```timer
+    [Unit]
+    Description = ...
+    
+    [Timer]
+    OnCalendar=daily
+    Persistent=true
+    
+    [Install]
+    WantedBy=timers.target
+    ```
+5. Restore a backup
 Use `borg list` to see all the archives present in the backup folder
-```bash
+```
 borg list /path/to/repo
 ```
-Then to restore the backup you'll need to use the `borg mount`
-```bash
+ To restore the backup you'll need to use the `borg mount` command
+```
 borg mount /path/to/repo::name_of_archive /path/to/restore
 ```
